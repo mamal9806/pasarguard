@@ -1,0 +1,82 @@
+# Files that 1.2.2 DELETED.
+#
+# When 1.2.2 is copied on top of an older (1.2.1) repository, deleted files are
+# not removed by the copy and stay behind as orphans. They still reference
+# symbols and string resources that no longer exist, which breaks the Kotlin
+# compile even though the shipped source tree is fine. scripts/purge-stale-sources.sh
+# removes exactly the paths listed here before the build, so a release can never
+# be broken by a leftover file again.
+#
+# One repo-relative path per line. Only app/, native/aether/aether/src/ and
+# docs/ paths are accepted.
+
+# --- in-app updater (removed in 1.2.2: the app no longer downloads APKs) ---
+app/src/main/java/studio/cluvex/aether/core/UpdateChecker.kt
+app/src/main/java/studio/cluvex/aether/core/UpdateInstaller.kt
+app/src/main/java/studio/cluvex/aether/core/UpdateDownloader.kt
+app/src/main/java/studio/cluvex/aether/ui/components/UpdatePrompt.kt
+app/src/main/java/studio/cluvex/aether/ui/components/UpdateDialog.kt
+app/src/main/java/studio/cluvex/aether/ui/UpdatePanel.kt
+
+# --- country / location picker (removed in 1.2.2: anycast makes it meaningless) ---
+app/src/main/java/studio/cluvex/aether/core/Locations.kt
+app/src/main/java/studio/cluvex/aether/ui/components/LocationPanel.kt
+
+# --- forced clean-exit policy (removed in 1.2.2 at the user's request) ---
+app/src/main/java/studio/cluvex/aether/core/CleanExit.kt
+app/src/main/java/studio/cluvex/aether/core/ExitGuard.kt
+app/src/main/java/studio/cluvex/aether/core/BadEdgeStore.kt
+app/src/main/java/studio/cluvex/aether/ui/components/ExitPolicyCard.kt
+native/aether/aether/src/geoguard.rs
+
+# --- Tor backend (removed in 1.2.7: TCP-only, so all device UDP had to be
+#     faked out of its DNSPort, and bootstrapping through the Aether handshake
+#     read as a hang) ---
+#
+#     1.3.0 NOTE: transport/TorSocksFront.kt was REMOVED FROM THIS LIST because
+#     1.3.0 legitimately brings that path back - Tor now lives in the engine
+#     (core 2.0.0) and the app front is written against it. Leaving the line here
+#     made CI delete the new file, commit the deletion to main and then fail the
+#     compile with "Unresolved reference 'TorSocksFront'" in AetherVpnService.
+#     A path may only stay on this list while NO shipped source file provides it.
+#     purge-stale-sources.sh now enforces exactly that.
+#
+#     TorTransport.kt and build-tor.sh stay: the standalone Tor binary and its
+#     transport are gone for good, the engine does that work now.
+app/src/main/java/studio/cluvex/aether/transport/TorTransport.kt
+scripts/build-tor.sh
+
+# --- superseded by the unified connection card (removed in 1.2.6) ---
+app/src/main/java/studio/cluvex/aether/ui/components/StatusLine.kt
+app/src/main/java/studio/cluvex/aether/ui/components/TrafficPanel.kt
+app/src/main/java/studio/cluvex/aether/ui/components/ConnectionMeta.kt
+
+# --- dead resource swept by the 1.2.7 security audit: the FileProvider that
+#     used it went with the in-app updater in 1.2.2, so these paths described an
+#     export path that no longer exists ---
+app/src/main/res/xml/file_paths.xml
+
+# --- superseded by the settings screen (removed in 1.2.7): the single
+#     ~900-line "Advanced settings" card. Its controls now live in
+#     app/src/main/java/studio/cluvex/aether/ui/settings/. ---
+app/src/main/java/studio/cluvex/aether/ui/AdvancedPanel.kt
+
+# --- superseded by the bottom-sheet choice row (removed in 1.2.7): a
+#     DropdownMenu cannot present 56 exit countries usably on a phone. ---
+app/src/main/java/studio/cluvex/aether/ui/components/DropdownSelector.kt
+
+# --- the app's own Psiphon engine (removed in 1.4.0): core 2.1.0 ships Psiphon
+#     INSIDE the engine (psiphon.rs + the psiphon-tunnel-core console client,
+#     packaged as libpsiphon.so), so the AAR and the watchdog that drove it
+#     would only conflict with it. The embedded server list is NOT removed:
+#     the engine's Psiphon is started with it (-serverList),
+#     because without it a failed remote-list download leaves Psiphon with no
+#     server at all. ---
+app/libs/psiphontunnel-2.0.39.aar
+app/libs/PROVENANCE.md
+app/src/main/java/studio/cluvex/aether/transport/PsiphonHealth.kt
+
+# --- upstream core 2.3.0 (app 1.5.0) renamed the WARP API front: apifront.rs
+#     became https.rs. A leftover apifront.rs is not compiled (lib.rs no longer
+#     declares it) but must not linger next to its replacement. ---
+native/aether/aether/src/apifront.rs
