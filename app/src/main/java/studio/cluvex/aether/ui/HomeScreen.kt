@@ -1,6 +1,12 @@
 package studio.cluvex.aether.ui
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -65,6 +71,7 @@ import studio.cluvex.aether.ui.settings.SettingsGroup
 import studio.cluvex.aether.ui.settings.SettingsHost
 import studio.cluvex.aether.ui.settings.SettingsNavRow
 import studio.cluvex.aether.ui.settings.SettingsRoute
+import studio.cluvex.aether.ui.theme.AetherBlue
 import studio.cluvex.aether.ui.theme.AetherMint
 import studio.cluvex.aether.ui.theme.AetherViolet
 
@@ -257,6 +264,19 @@ fun HomeScreen(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Top,
                 ) {
+                    // Brand badge: a glossy blue shield-ish disc with the P mark.
+                    Box(
+                        modifier = Modifier
+                            .size(64.dp)
+                            .clip(CircleShape)
+                            .background(Brush.linearGradient(listOf(Color(0xFF3FA2FF), Color(0xFF0B1F5C)))),
+                        contentAlignment = Alignment.Center,
+                    ) {
+                        Text("P", color = Color.White, style = MaterialTheme.typography.headlineMedium)
+                    }
+
+                    Spacer(Modifier.height(8.dp))
+
                     Text(
                         text = stringResource(R.string.app_name),
                         style = MaterialTheme.typography.headlineMedium,
@@ -269,7 +289,7 @@ fun HomeScreen(
                         textAlign = TextAlign.Center,
                     )
 
-                    Spacer(Modifier.height(8.dp))
+                    Spacer(Modifier.height(18.dp))
 
                     ConnectButton(
                         mode = mode,
@@ -277,9 +297,44 @@ fun HomeScreen(
                         stateText = stateTitle(state),
                     )
 
-                    // The button's box carries its own halo padding, so the gap
-                    // under it is only there to separate two surfaces.
-                    Spacer(Modifier.height(6.dp))
+                    Spacer(Modifier.height(4.dp))
+
+                    Text(
+                        text = stateSubtitle(state),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        textAlign = TextAlign.Center,
+                    )
+
+                    Spacer(Modifier.height(14.dp))
+
+                    // Server pill: where the tunnel currently goes out.
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clip(RoundedCornerShape(20.dp))
+                            .background(MaterialTheme.colorScheme.surface)
+                            .padding(14.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Icon(Icons.Rounded.Wifi, contentDescription = null, tint = AetherBlue)
+                        Spacer(Modifier.width(10.dp))
+                        Column(Modifier.weight(1f)) {
+                            Text(
+                                text = stringResource(R.string.app_name),
+                                style = MaterialTheme.typography.titleSmall,
+                                color = MaterialTheme.colorScheme.onSurface,
+                            )
+                            Text(
+                                text = profile.backend.toString(),
+                                style = MaterialTheme.typography.bodySmall,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            )
+                        }
+                        Icon(Icons.Rounded.Settings, contentDescription = null, tint = AetherBlue)
+                    }
+
+                    Spacer(Modifier.height(10.dp))
 
                     ConnectionCard(
                         connected = state.isConnected,
