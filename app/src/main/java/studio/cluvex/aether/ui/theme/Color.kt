@@ -19,29 +19,29 @@ import androidx.compose.ui.graphics.Color
 // ---------------------------------------------------------------------------
 
 /** The page behind everything. */
-val Navy950 = Color(0xFF070B14)
+val Navy950 = Color(0xFFF4F8FF)
 /** Sheets, drawers, the settings surface. */
-val Navy900 = Color(0xFF0B111D)
+val Navy900 = Color(0xFFFFFFFF)
 /** Elevation 1: a settings group / card. */
-val Navy850 = Color(0xFF101827)
+val Navy850 = Color(0xFFFFFFFF)
 /** Elevation 2: a row inside a card, an input field. */
-val Navy800 = Color(0xFF152034)
+val Navy800 = Color(0xFFEEF4FF)
 /** Elevation 3: a pressed row, the selected segment's track. */
-val Navy750 = Color(0xFF1B2842)
+val Navy750 = Color(0xFFE2EBFA)
 /** Hairlines and dividers. */
-val Navy700 = Color(0xFF223154)
+val Navy700 = Color(0xFFD3DEF2)
 /** Disabled strokes. */
-val Navy600 = Color(0xFF2B3C63)
+val Navy600 = Color(0xFFB8C8E6)
 
 // ---- Accents -------------------------------------------------------------
 
 /** Primary action / selected state. */
 val AetherBlue = Color(0xFF1E63F0)
 /** Container tint behind a primary icon. */
-val AetherBlueDim = Color(0xFF0F2A5C)
+val AetherBlueDim = Color(0xFFDCE8FF)
 /** The connected accent, shared with the card's travelling edge. */
 val AetherMint = Color(0xFF3EDBB0)
-val AetherMintDim = Color(0xFF10322C)
+val AetherMintDim = Color(0xFFD9F7EE)
 /** Second light of the animated card edge, cooler than the mint. */
 val AetherGlowCyan = Color(0xFF35D0E8)
 val AetherCyan = Color(0xFF32E0C4)
@@ -65,13 +65,13 @@ val AetherAmber = Color(0xFFFFB74D)
 val AetherViolet = Color(0xFF9B8CFF)
 
 /** Container tint behind an AI icon, matched to the ramp's elevation steps. */
-val AetherVioletDim = Color(0xFF241E4A)
+val AetherVioletDim = Color(0xFFE9E5FF)
 
 // ---- Text ----------------------------------------------------------------
 
-val OnDark = Color(0xFFE8EEF9)
-val OnDarkMuted = Color(0xFF93A1BC)
-val OnDarkDim = Color(0xFF64718C)
+val OnDark = Color(0xFF0F1B3D)
+val OnDarkMuted = Color(0xFF5A6A8C)
+val OnDarkDim = Color(0xFF8A97B2)
 
 // ---- Connection card ------------------------------------------------------
 //
@@ -80,8 +80,8 @@ val OnDarkDim = Color(0xFF64718C)
 // The stops are now derived from the ramp above so the card belongs to the same
 // palette as the settings screens.
 
-val CardSurfaceTop = Color(0xF0142039)
-val CardSurfaceBottom = Color(0xF6090F1B)
+val CardSurfaceTop = Color(0xE6FFFFFF)
+val CardSurfaceBottom = Color(0xF2F7FAFF)
 
 /** Every sub-container inside the card (IP pill, speed strip, protocol strip). */
 val CardSubSurface = Navy800

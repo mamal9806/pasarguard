@@ -1,7 +1,7 @@
 package studio.cluvex.aether.ui.theme
 
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.SideEffect
@@ -36,9 +36,9 @@ import studio.cluvex.aether.data.LanguagePrefs
  * elevation ramp rather than to alpha, which is what stops a card inside a sheet
  * from double-darkening.
  */
-private val AetherDarkColorScheme = darkColorScheme(
+private val AetherDarkColorScheme = lightColorScheme(
     primary = AetherBlue,
-    onPrimary = Color(0xFF00122E),
+    onPrimary = Color.White,
     primaryContainer = AetherBlueDim,
     onPrimaryContainer = AetherBlue,
 
@@ -132,8 +132,8 @@ fun AetherTheme(content: @Composable () -> Unit) {
             // The scheme is permanently dark, so the system bars always need
             // light icons. Set both, not only the status bar: on a device with a
             // gesture nav pill the navigation bar was reading the wallpaper.
-            controller.isAppearanceLightStatusBars = false
-            controller.isAppearanceLightNavigationBars = false
+            controller.isAppearanceLightStatusBars = true
+            controller.isAppearanceLightNavigationBars = true
             // Keep the view world in step with the composition. Without this the
             // two disagree, and anything that is NOT a Compose node - dialog
             // windows, popup anchoring, selection handles - mirrors the wrong way.

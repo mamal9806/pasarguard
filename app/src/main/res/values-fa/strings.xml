@@ -832,4 +832,9 @@
     <string name="announcements_desc">تازه‌های این نسخه و راهنمای اتصال، هر زمان که خواستید</string>
     <string name="announcements_version">نسخهٔ %1$s</string>
     <string name="announcements_footer">همهٔ پیام‌های به‌روزرسانی اینجا بایگانی می‌شوند. برای خواندن دوباره روی هر کدام بزنید.</string>
+    <string name="tab_home">خانه</string>
+    <string name="tab_stats">آمار</string>
+    <string name="tab_v2ray">V2Ray</string>
+    <string name="tab_settings">تنظیمات</string>
+    <string name="tab_about">درباره</string>
 </resources>

@@ -350,13 +350,12 @@ fun HomeScreen(
 
 @Composable
 private fun AetherTabBar(selected: Int, onSelect: (Int) -> Unit) {
-    // Labels are Persian-only for now; move them to strings.xml when it's convenient.
     val items = listOf(
-        Triple("خانه", Icons.Rounded.Home, 0),
-        Triple("آمار", Icons.Rounded.BarChart, 1),
-        Triple("V2Ray", Icons.Rounded.Send, 2),
-        Triple("تنظیمات", Icons.Rounded.Settings, 3),
-        Triple("درباره", Icons.Rounded.Info, 4),
+        Triple(stringResource(R.string.tab_home), Icons.Rounded.Home, 0),
+        Triple(stringResource(R.string.tab_stats), Icons.Rounded.BarChart, 1),
+        Triple(stringResource(R.string.tab_v2ray), Icons.Rounded.Send, 2),
+        Triple(stringResource(R.string.tab_settings), Icons.Rounded.Settings, 3),
+        Triple(stringResource(R.string.tab_about), Icons.Rounded.Info, 4),
     )
     NavigationBar(containerColor = MaterialTheme.colorScheme.surface) {
         items.forEach { (label, icon, index) ->
