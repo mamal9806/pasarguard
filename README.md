@@ -103,7 +103,7 @@ curl.exe -L "https://github.com/Vauth/sing-box/releases/download/v1.0.0-masque/l
 $expected = "a6a28c7f3cb53f4251d1578f4772f79831395503fdbf91920c6c1e33cc80281c"
 $actual = (Get-FileHash "app/libs/libbox.aar" -Algorithm SHA256).Hash.ToLower()
 if ($actual -ne $expected) { throw "libbox.aar SHA-256 mismatch" }
-gradle :app:assembleDebug
+.\gradlew.bat :app:assembleDebug
 ```
 
 The pinned `libbox.aar` is a release download (about 65 MB), not a file committed to this repository. Keep it at `app/libs/libbox.aar`; do not substitute a different sing-box build.
